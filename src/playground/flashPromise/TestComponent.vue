@@ -16,7 +16,7 @@ export default defineComponent({
   },
   methods: {
     handleClick() {
-      setTimeout((this.message = "非同期処理が完了しました。"), 3000);
+      setTimeout(() => (this.message = "非同期処理が完了しました。"), 3000);
     },
   },
 });
