@@ -1,12 +1,15 @@
 <template>
   <div>
-    <button id="send-btn" @click="handleClick">button</button>
+    <button id="send-btn" @click="handleClick()">button</button>
     {{ message }}
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import axios from "axios";
+
+export const get = () => Promise.resolve({ data: "value" });
 
 export default defineComponent({
   data() {
@@ -15,8 +18,9 @@ export default defineComponent({
     };
   },
   methods: {
-    handleClick() {
-      setTimeout(() => (this.message = "非同期処理が完了しました。"), 3000);
+    async handleClick() {
+      const response = await axios.get("mock/service");
+      this.message = response.data;
     },
   },
 });

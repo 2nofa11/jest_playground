@@ -1,13 +1,15 @@
-import { mount, flushPromises } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import TestComponent from "./TestComponent.vue";
 
-test("TestComponentのテスト", async () => {
+test("TestComponentのテスト", (done) => {
   // TestComponentをマウント
   const wrapper = mount(TestComponent);
   // ボタンをクリック
-  wrapper.find("#send-btn").trigger("click");
-  await flushPromises();
+  wrapper.find("button").trigger("click");
 
   // 非同期が完了したら、結果を確認
-  expect(wrapper.text()).toContain("非同期処理が完了しました。");
+  wrapper.vm.$nextTick(() => {
+    expect(wrapper.vm.$data.message).toContain("非同期処理が完了しました。");
+    done();
+  });
 });
