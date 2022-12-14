@@ -7,9 +7,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import axios from "axios";
-
-export const get = () => Promise.resolve({ data: "value" });
 
 export default defineComponent({
   data() {
@@ -19,8 +16,12 @@ export default defineComponent({
   },
   methods: {
     async handleClick() {
-      const response = await axios.get("mock/service");
-      this.message = response.data;
+      const response = Promise.resolve({ data: "value" });
+      response.then(() => {
+        this.message = "非同期処理が完了しました。";
+        console.log("非同期ない");
+      });
+      console.log("非同期外");
     },
   },
 });

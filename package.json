@@ -4,14 +4,13 @@
   "version": "0.0.0",
   "type": "commonjs",
   "scripts": {
-    "dev": "lint",
+    "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test": "jest  --coverage",
     "coverage": "jest  --coverage"
   },
   "dependencies": {
-    "axios": "^1.2.1",
     "vue": "^3.2.41"
   },
   "devDependencies": {
