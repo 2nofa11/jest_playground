@@ -7,6 +7,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+function dispMsg() {
+  alert("時間切れです");
+}
 
 export default defineComponent({
   data() {
@@ -16,12 +19,13 @@ export default defineComponent({
   },
   methods: {
     async handleClick() {
-      const response = Promise.resolve({ data: "value" });
-      response.then(() => {
-        this.message = "非同期処理が完了しました。";
-        console.log("非同期ない");
+      const response = Promise.resolve(
+        window.setTimeout(() => {
+          this.message = "非同期処理が完了しました。";
+        }, 5000)
+      ).then(function () {
+        console.log("終わった");
       });
-      console.log("非同期外");
     },
   },
 });
